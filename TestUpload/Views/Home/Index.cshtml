@@ -1,0 +1,61 @@
+﻿
+@model ResultModel
+@{
+    ViewData["Title"] = "Test Upload";
+
+
+
+}
+<div class="text-center">
+    <h1 class="display-4">Test Upload</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+    <div class="text-center">
+        <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
+            <div class="form-group">
+
+                <p>Upload file</p>
+                <input class="form-control" name="files" type="file" onclick="ClearResult()"/>
+
+            </div>
+            <div class="form-group">
+
+                <input class="btn btn-success" type="submit" value="Import Data To DB" />
+
+            </div>
+        </form>
+
+        @if (Model != null)
+        {
+            @if (Model != null && Model.responseCode == "200")
+            {
+                <div id="result" class="form-group text-success">
+                    @Html.DisplayFor(model => model.responseMessage)
+                </div>
+            }
+            else
+            {
+                <div id="result" class="form-group text-danger">
+                    @Html.DisplayFor(model => model.messageError)
+                </div>
+
+            }
+        }
+        else
+        {
+            <div class="form-group text-success">
+
+            </div>
+        }
+
+
+
+    </div>
+    <script>
+        function ClearResult(){
+            $("#result")[0].innerText = "";
+        }
+   </script>
+
+</div>
