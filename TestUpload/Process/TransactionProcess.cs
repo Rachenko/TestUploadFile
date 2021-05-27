@@ -11,7 +11,8 @@ namespace TestUpload.Process
     {
         private static HttpClient _client;
         private static DatabaseContext _context;
-
+        private const string strXML = ".xml";
+        private const string strCSV = ".csv";
         public TransactionProcess(DatabaseContext context,HttpClient client)
         {
             _client = client;
@@ -129,7 +130,7 @@ namespace TestUpload.Process
             string result = "";
             try
             {
-                if (data.SourceType == ".csv")
+                if (data.SourceType == strCSV)
                 {
                     if (data.Status == "Approved")
                     {
@@ -145,7 +146,7 @@ namespace TestUpload.Process
                     }
 
                 }
-                else if (data.SourceType == ".xml")
+                else if (data.SourceType == strXML)
                 {
                     if (data.Status == "Approved")
                     {
